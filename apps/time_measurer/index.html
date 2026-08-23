@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <title>TimeMeasurer</title>
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="root">
+    <canvas id="ComposeTarget"></canvas>
+</div>
+<script>
+    const canvas = document.getElementById("ComposeTarget");
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    })
+</script>
+<script src="composeApp.js"> </script>
+</body>
+</html>
