@@ -31,58 +31,56 @@ body {
     isolation: isolate;
 }
 
-@property --gradient-angle {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
-}
-
-body::before {
+body::before,
+body::after {
     content: "";
     position: fixed;
     inset: -50%;
     z-index: -1;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    will-change: transform;
+}
+
+body::before {
     background:
-        radial-gradient(circle at 30% 30%, rgba(124, 58, 237, 0.75) 0%, transparent 35%),
-        radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.65) 0%, transparent 35%),
-        radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.55) 0%, transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.55) 0%, transparent 35%),
-        radial-gradient(circle at 20% 60%, rgba(245, 158, 11, 0.45) 0%, transparent 35%),
-        linear-gradient(var(--gradient-angle), #0a0a0f 0%, #1a132e 50%, #0a0a0f 100%);
-    background-size: 120% 120%;
-    animation: lava-move 20s ease-in-out infinite alternate, lava-hue 30s linear infinite;
-    will-change: background-position, transform;
+        radial-gradient(circle at 30% 30%, rgba(124, 58, 237, 0.7) 0%, transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.6) 0%, transparent 35%),
+        radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.5) 0%, transparent 35%);
+    opacity: 0.85;
+    animation: lava-a 24s ease-in-out infinite alternate;
 }
 
-@keyframes lava-move {
+body::after {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.6) 0%, transparent 35%),
+        radial-gradient(circle at 20% 60%, rgba(245, 158, 11, 0.5) 0%, transparent 35%),
+        radial-gradient(circle at 60% 40%, rgba(139, 92, 246, 0.5) 0%, transparent 35%);
+    opacity: 0.75;
+    animation: lava-b 30s ease-in-out infinite alternate;
+}
+
+@keyframes lava-a {
     0% {
-        --gradient-angle: 0deg;
-        background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%, 50% 50%, 0% 50%;
-        transform: rotate(0deg) scale(1);
-    }
-    50% {
-        --gradient-angle: 180deg;
-        background-position: 100% 100%, 0% 0%, 100% 0%, 0% 100%, 100% 50%, 100% 50%;
-        transform: rotate(5deg) scale(1.05);
+        transform: translate3d(-5%, -5%, 0) rotate(0deg) scale(1);
     }
     100% {
-        --gradient-angle: 360deg;
-        background-position: 50% 100%, 50% 0%, 0% 50%, 100% 50%, 0% 0%, 0% 50%;
-        transform: rotate(0deg) scale(1);
+        transform: translate3d(5%, 5%, 0) rotate(8deg) scale(1.08);
     }
 }
 
-@keyframes lava-hue {
+@keyframes lava-b {
     0% {
-        filter: hue-rotate(0deg) saturate(1.2);
+        transform: translate3d(5%, -5%, 0) rotate(0deg) scale(1.05);
     }
     100% {
-        filter: hue-rotate(360deg) saturate(1.2);
+        transform: translate3d(-5%, 5%, 0) rotate(-8deg) scale(1);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    body::before {
+    body::before,
+    body::after {
         animation: none;
     }
 }
@@ -116,12 +114,11 @@ body::before {
 }
 
 .app-card {
-    background: rgba(22, 22, 29, 0.8);
+    background: rgba(22, 22, 29, 0.75);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 24px;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-    opacity: 0.8;
 }
 
 .app-header {
