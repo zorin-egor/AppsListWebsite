@@ -351,6 +351,20 @@ body::after {
     display: block;
 }
 
+.screenshots-carousel {
+    display: none;
+}
+
+.screenshot-mobile {
+    flex: 0 0 auto;
+    width: 72vw;
+    max-width: 260px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    scroll-snap-align: center;
+}
+
 .video-placeholder {
     display: flex;
     flex-direction: column;
@@ -379,12 +393,24 @@ body::after {
 }
 
 @media (max-width: 640px) {
+    .container {
+        padding: 0 16px;
+    }
+
     .hero {
-        padding: 64px 0 48px;
+        padding: 48px 0 40px;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
     }
 
     .apps-section {
-        padding: 48px 0 64px;
+        padding: 40px 0 64px;
+    }
+
+    .apps-grid {
+        gap: 24px;
     }
 
     .app-card__body {
@@ -392,7 +418,42 @@ body::after {
     }
 
     .app-card__media {
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 16 / 9;
+    }
+
+    .app-card__more {
+        top: 12px;
+        right: 12px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .app-header {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .app-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .app-name {
+        font-size: 1.25rem;
+    }
+
+    .app-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .store-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .detail-page {
+        padding: 24px 0 64px;
     }
 
     .detail-header {
@@ -401,7 +462,35 @@ body::after {
         gap: 12px;
     }
 
+    .detail-icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .detail-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .try-button {
+        justify-content: center;
+    }
+
     .screenshots {
-        grid-template-columns: 1fr;
+        display: none;
+    }
+
+    .screenshots-carousel {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .screenshots-carousel::-webkit-scrollbar {
+        display: none;
     }
 }
